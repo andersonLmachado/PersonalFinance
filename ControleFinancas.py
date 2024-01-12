@@ -2,17 +2,13 @@ import flet as ft
 
 def main(page: ft.Page):
     page.title = "Personal Finance"
-    page.scroll = "Olá Andy"    
-    
-def main(page: ft.Page):
-    def textbox_changed(e):
-        t.value = e.control.value
-        page.update()
+    page.scroll = "Olá Andy" 
 
     t = ft.Text()
     tb = ft.TextField(
         label="R$",
-        on_change=textbox_changed,
+        input_filter=ft.InputFilter(allow=True, regex_string=r"[0-9]", replacement_string=""),
+        
     )
 
     page.add(
@@ -23,5 +19,19 @@ def main(page: ft.Page):
     
     page.add(tb,t)
     
-
+    contas_text = ft.Text()
+    lazer_text = ft.Text()
+    invest_text = ft.Text()
+    
+    page.add(
+        ft.Text("Contas: ", style=ft.TextThemeStyle.BODY_LARGE),
+        contas_text,
+        
+        ft.Text("Lazer: ", style=ft.TextThemeStyle.BODY_LARGE),
+        lazer_text,
+        
+        ft.Text("Investimentos: ", style=ft.TextThemeStyle.BODY_LARGE),
+        invest_text,
+    )
+    
 ft.app(target=main)
